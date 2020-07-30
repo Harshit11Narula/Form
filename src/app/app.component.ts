@@ -45,7 +45,6 @@ export class AppComponent implements OnInit {
 
   // File Validation
   readFile(event) {
-    console.log(event);
     this.uploaded_file = event.target.files[0].name;
     const size = event.target.files[0].size / 1024 / 1024;
     if (size > 10) {
@@ -55,18 +54,16 @@ export class AppComponent implements OnInit {
       // Task 1
       this.task1(event.target.files[0])
         .then((data) => {
-          console.log(data);
           this.task1_output = data.tags.artist + ' and ' + data.tags.album;
         })
         .catch((error) => {
-          console.log(error);
+          this.task1_output = "while reading data got: " + error;
         });
     }
   }
 
   // Age Validation
   ageValidator(control: FormControl) {
-    console.log(control.value);
     if (control.value.trim().length === 0) {
       return null;
     }
@@ -125,8 +122,6 @@ export class AppComponent implements OnInit {
     if (this.file_warning === '') {
       this.success_submit = 'Form Submit Success';
     }
-
-    console.log(FormControl);
   }
 }
 
